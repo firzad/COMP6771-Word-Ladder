@@ -1,0 +1,46 @@
+#
+#  Copyright Christopher Di Bella
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+include("${CMAKE_CURRENT_LIST_DIR}/gnu-flags.cmake")
+
+set(CMAKE_CXX_COMPILER_ID Clang)
+set(CMAKE_CXX_COMPILER_VERSION 11)
+set(CMAKE_CXX_COMPILER "clang++-11")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+
+if(NOT AMCXX_LIBCXX_INCLUDE_PATH)
+	if (WIN32)
+		set(AMCXX_LIBCXX_INCLUDE_PATH "$ENV{UserProfile}/llvm-11/include/c++/v1")
+	elseif (UNIX)
+		set(AMCXX_LIBCXX_INCLUDE_PATH "/usr/lib/llvm-11/include/c++/v1")
+	else()
+		message(FATAL "System not supported.")
+	endif()
+endif()
+
+if(NOT EXISTS "${AMCXX_LIBCXX_INCLUDE_PATH}")
+	message(FATAL "Path to libc++ \"${AMCXX_LIBCXX_INCLUDE_PATH}\" not found. Please provide a path to your libc++ include directory to AMCXX_LIBCXX_INCLUDE_PATH.")
+endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc++ -cxx-isystem ${AMCXX_LIBCXX_INCLUDE_PATH}")
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fsanitize=cfi")
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=lld")
+
+set(CMAKE_AR "llvm-ar-11")
+set(CMAKE_RC_COMPILER "llvm-rc-11")
+set(CMAKE_RANLIB "llvm-ranlib-11")
