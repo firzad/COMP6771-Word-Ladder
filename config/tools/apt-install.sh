@@ -2,13 +2,16 @@
 # Copyright (c) Christopher Di Bella.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
-DISTRO=`lsb_release -a 2>&1 | egrep 'Distributor:\s+' | cut -d':' -f2 | tr -d '\t'`
+set -e
+
+DISTRO=`lsb_release -a 2>&1 | egrep 'Distributor ID:\s+' | cut -d':' -f2 | tr -d '\t'`
 CODENAME=`lsb_release -a 2>&1 | egrep 'Codename:\s+' | cut -d':' -f2 | tr -d '\t'`
 
 # We need to know who runs non-root commands
 if [[ $1 == "" ]]; then
    echo "$0: ./$0 username"
-   echo "`username` should be \"`whoami`\" or \"root\""
+   echo "'username' should be \"\`whoami\`\" or \"root\""
+   echo "note that this script must be run as root (e.g. using sudo)"
    exit 1
 fi
 
@@ -19,8 +22,11 @@ fi
 
 if [[ $DISTRO == 'Ubuntu' ]]; then
    GCC10_REPO='ppa:ubuntu-toolchain-r/test'
-else
+elif [[ $DISTRO == 'Debian' ]]; then
    GCC10_REPO='deb http://deb.debian.org/debian testing main'
+else
+   echo "$0: only Debian and Ubuntu are supported at this time"
+   exit 1
 fi
 
 install_cmake() {
@@ -31,13 +37,16 @@ install_cmake() {
    fi
 }
 
-apt-get update                                                                                  && \
-apt-get dist-upgrade -y                                                                         && \
-apt-get install -y curl gnupg wget software-properties-common                                   && \
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -                            && \
-add-apt-repository "deb http://apt.llvm.org/$CODENAME/ llvm-toolchain-$CODENAME main"           && \
-if [[ $CODENAME != 'focal' ]]; then add-apt-repository "${GCC10_REPO}"; fi                      && \
-apt-get update                                                                                  && \
+apt-get update
+apt-get dist-upgrade -y
+apt-get install -y curl gnupg wget software-properties-common
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+add-apt-repository "deb http://apt.llvm.org/$CODENAME/ llvm-toolchain-$CODENAME main"
+if [[ $CODENAME != 'focal' ]]; then
+    add-apt-repository "${GCC10_REPO}";
+fi
+
+apt-get update
 apt-get install -y      \
     build-essential     \
     bzip2               \
@@ -46,9 +55,6 @@ apt-get install -y      \
     clang-tools-11      \
     clang-11            \
     clangd-11           \
-    gcc-10              \
-    g++-10              \
-    gdb                 \
     git                 \
     gzip                \
     libc++-11-dev       \
@@ -68,7 +74,8 @@ apt-get install -y      \
     tar                 \
     unzip               \
     zip                 \
-    zlib1g                                                && \
-ln -s /usr/lib/llvm-11/include/c++/v1 /usr/include/c++/v1 && \
-python3 -m pip install pip --upgrade                      && \
+    zlib1g
+
+ln -s /usr/lib/llvm-11/include/c++/v1 /usr/include/c++/v1
+python3 -m pip install pip --upgrade
 install_cmake $1
