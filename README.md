@@ -96,7 +96,7 @@ Again, it’s all about leveraging the libraries at your disposal --- you’ll f
 If you haven't done so already, clone this repository.
 
 ```sh
-$ git clone https://gitlab.cse.unsw.edu.au/z5555555/20T2-cs6771-ass1
+$ git clone gitlab@gitlab.cse.unsw.edu.au:z5555555/20T2-cs6771-ass1
 ```
 
 (Note: Replace z5555555 with your zid)
@@ -129,7 +129,7 @@ The correctness of your program will be determined automatically by tests that w
 		<li>Clarity - If your test case failed, it should be immediately obvious what went wrong (this means splitting it up into appropriately sized sub-tests, amongst other things).</li>
 	</ul>
 
-<tr><td align=right>20%<td><b>C++ best practices</b><br />Your adherence to good C++ best practice in lecture. This is <b>not</b> saying that if you conform to the style guide you will receive full marks for this section. This 20% is also based on how well you use modern C++ methodologies taught in this course as opposed to using backwards-compatible C methods. Examples include: Not using primitive arrays and not using pointers. We will also penalise you for 
+<tr><td align=right>20%<td><b>C++ best practices</b><br />Your adherence to good C++ best practice in lecture. This is <b>not</b> saying that if you conform to the style guide you will receive full marks for this section. This 20% is also based on how well you use modern C++ methodologies taught in this course as opposed to using backwards-compatible C methods. Examples include: Not using primitive arrays and not using pointers. We will also penalise you for standard poor practices in programming, such as having too many nested loops, poor variable naming, etc.
 
 <tr><td align=right>5%<td><b>clang-format</b><br />
 In your project folder, run the following commands on all C++ files you submit:<br />
