@@ -21,19 +21,19 @@ In the role of client, the low-level details have already been dealt with, and y
 attention on solving more pressing problems. Having a library of thoroughly tested and reviewed
 types designed by field experts vastly broadens the kinds of tasks you can “easily” tackle. In this
 first assignment, you’ll write the back-end for a program that heavily leverages the standard
-library to do nifty things. It might sound a little daunting at first; but given the power-tools in
+library to do nifty things. It might sound a little daunting at first; but given the power tools in
 your arsenal, you can focus on solving the problem at hand, instead of worrying about how to
 implement everything from scratch. Let’s hear it for abstraction!
 
 This assignment has several purposes:
-1. To explore C++’s value-semantics.
+1. To explore C++’s value semantics.
 2. To stress the notion of abstraction as a mechanism for managing data and providing functionality
    without revealing the implementation.
-3. To become more familiar with the C++ type-system.
+3. To become more familiar with C++'s type system.
 4. To gain familiarity with the C++ standard library and several widely used third-party libraries.
 
 Leveraging `std::vector`, `std::queue`, and `absl::flat_hash_set` are critical for writing a
-word-ladder builder. A word-ladder is a connection from one word to another, formed by changing one
+word ladder builder. A word ladder is a connection from one word to another, formed by changing one
 letter at a time, with the constraint that each transformation yields a new valid word. For example,
 here is a word ladder connecting "code" to "data".
 
@@ -59,7 +59,7 @@ work wort wert pert peat plat play
 ```
 
 The back-end that you will write takes a start word, a destination word, and a lexicon, which
-returns valid word-ladders. By using a [breadth-first search][bfs], you’re guaranteed to find the
+returns valid word ladders. By using a [breadth-first search][bfs], you’re guaranteed to find the
 shortest such sequence. Here are some more examples.
 
 ```cpp
@@ -73,12 +73,12 @@ shortest such sequence. Here are some more examples.
 
 ## Understanding a word ladder implementation
 
-Finding a word-ladder is a specific instance of a [shortest-path problem][ssp], where the challenge
+Finding a word ladder is a specific instance of a [shortest-path problem][ssp], where the challenge
 is to find the shortest path from a starting position to a goal. Shortest-path problems come up in a
 variety of situations, such as packet routing, robot motion planning, social networks, and studying
 gene mutations. One approach for finding a shortest path is the classic breadth-first search
 algorithm. A breadth-first search searches outward from the start in a radial fashion, until it hits
-the goal. For our word-ladder, this means examining those ladders that represent one hop from the
+the goal. For our word ladder, this means examining those ladders that represent one hop from the
 start. A “hop” is a change in letter. One “hop” from the start means one changed letter, two “hops”
 means two changes in letters, and so on. It’s possible for the same position to change letters
 across multiple non-adjacent hops. If any of these reach the destination, we’re done. If not, the
@@ -106,19 +106,19 @@ word and you will have discovered all the words that are one letter away.
 Another, more subtle issue, is the restriction that you shouldn’t reuse words that have been
 included in a previous ladder. This is an optimisation that avoids exploring redundant paths. For
 example, if you previously tried the ladder `cat->cot->cog` and are now processing `cat->cot->con`,
-you would find that the word `cog` is one letter away from con, which looks like a potential
+you would find that the word `cog` is one letter away from `con`, which looks like a potential
 candidate to extend this ladder. However, `cog` has already been reached in an earlier (and thus
 shorter) ladder, so there is no point in reconsidering it in a longer ladder. The simplest way to
 ensure this is to keep track of the words that have been used in any ladder, and ignore them when
 they resurface. This is also necessary to avoid getting trapped in circular, non-terminal ladders
 such as `cat->cot->cog->bog->bat->cat`. Since you need linear access to all of the items in a
-word-ladder when time comes to return it, it makes sense to model an individual word-ladder using
-`std::vector<std::string>`. Remember that because C++ has value-semantics, you’re able to copy
+word ladder when time comes to return it, it makes sense to model an individual word ladder using
+`std::vector<std::string>`. Remember that because C++ has value semantics, you’re able to copy
 vectors via copy initialisation (e.g. `auto word_ladder_clone = word_ladder;`) and copy assignment
 (e.g. `word_ladder_clone = word_ladder`).
 
 **If there are multiple shortest paths, your implementation must return all the solutions, sorted in
-lexicographical order. Thus, the return type for your word-ladder generator will be
+lexicographical order. Thus, the return type for your word ladder generator will be
 `std::vector<std::vector<std::string>>`.**
 
 
@@ -129,7 +129,7 @@ plan to keep things moving along.
 
 * **Task 1** --- *Familiarise yourself with the libraries available.* You don’t need to deep-dive,
 but it would be a smart idea to read up on `std::vector`, `std::queue`, and `std::unordered_set`,
-from the standard library; and to read up on the range-adaptors we’ve listed in the appendix. You
+from the standard library; and to read up on the range adaptors we’ve listed in the appendix. You
 shouldn’t worry about their implementation details: focus on the interfaces, and how you use them in
 practice.
 * **Task 2** --- *Test design.* We’ve provided you with a very simple test case to show you how to
@@ -140,8 +140,8 @@ letters) and test words that are longer.
 * **Task 3** --- *Design your algorithm.* Be sure you understand the breadth-first search algorithm
 on paper, and what types you will need to use.
 * **Task 4** --- *Lexicon handling.* Set up an `absl::flat_hash_set` object with the large lexicon,
-read from our data file (there’s a utility function called `word_ladder::read_lexicon` that will
-read it in from file for you).
+read from our data file. There’s a utility function called `word_ladder::read_lexicon` that will
+read it in from file for you.
 
 ### Assumptions
 
@@ -150,13 +150,12 @@ read it in from file for you).
 
 ### Implementation hints
 
-<<<<<<< README.md
 Again, it’s all about leveraging the libraries at your disposal --- you’ll find your job is just to
 coordinate the activities of your objects to do the search.
 
-* [`std::vector`][vector] maintains a contiguous sequence of elements, and has random-access.
+* [`std::vector`][vector] maintains a contiguous sequence of elements, and has random access.
   Benchmarks have shown that its contiguous storage makes it the fastest and smallest container
-  in many situations (even when computer science theory tells us that a linked-list would be
+  in many situations (even when computer science theory tells us that a linked list would be
   better!).
 * [`std::queue`][queue] offers a FIFO interface over a container, which is probably what you’ll
   want to use for tracking your partial ladders. Ladders are enqueued (and thus dequeued) in
@@ -216,18 +215,18 @@ dozen if statements).
       or review lecture/tutorial content to see how to write tests. Tests will be marked on several
       factors. These include, but are not limited to:
       <ul>
-        <li>Correctness - an incorrect test is worse than useless.</li>
+        <li>Correctness — an incorrect test is worse than useless.</li>
         <li>
           Coverage - your tests might be great, but if they don't cover the part that ends up
           failing, they weren't much good to you.
         </li>
         <li>
-          Brittleness - If you change your implementation, will the tests need to be changed (this
+          Brittleness — If you change your implementation, will the tests need to be changed (this
           generally means avoiding calling functions specific to your implementation where possible
           - ones that would be private if you were doing OOP).
         </li>
         <li>
-          Clarity - If your test case failed, it should be immediately obvious what went wrong (this
+          Clarity — If your test case failed, it should be immediately obvious what went wrong (this
           means splitting it up into appropriately sized sub-tests, amongst other things).
         </li>
       </ul>
@@ -250,7 +249,7 @@ dozen if statements).
     <b>clang-format</b><br />
     In your project folder, run the following commands on all C++ files you submit:<br />
     <code>$ git clang-format-11 -style=file -i /path/to/file.cpp</code>
-    If the program outputs nothing (i.e. is linted dorrectly), you will receive full marks for
+    If the program outputs nothing (i.e. is linted correctly), you will receive full marks for
     this section (5%)
   </tr>
 </table>
