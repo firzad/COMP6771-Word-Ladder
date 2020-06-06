@@ -4,7 +4,7 @@
 and clarifications over the coming days. We will keep a log at the top of this file of changes we
 make.**
 
-**Please git clone frequently to get the latest changes.**
+**Please `git clone` frequently to get the latest changes.**
 
 ## Change Log
  * No items yet
@@ -37,6 +37,7 @@ word-ladder builder. A word-ladder is a connection from one word to another, for
 letter at a time, with the constraint that each transformation yields a new valid word. For example,
 here is a word ladder connecting "code" to "data".
 
+
 ```txt
 code -> cade -> cate -> date -> data
 ```
@@ -63,7 +64,7 @@ shortest such sequence. Here are some more examples.
 
 ```cpp
 ::word_ladder::generate("work", "play", english_words);
-// returns {{"work, "fork", "form", "foam", "flam", "flay", "play"}}
+// returns {{"work", "fork", "form", "foam", "flam", "flay", "play"}}
 ::word_ladder::generate("awake", "sleep", english_words);
 // returns {{"awake", "aware", "sware", "shire", "shirr", "shier", "sheer", "sheep", "sleep"}}
 ::word_ladder::generate("airplane", "tricycle", engish_words);
@@ -106,7 +107,7 @@ Another, more subtle issue, is the restriction that you shouldn’t reuse words 
 included in a previous ladder. This is an optimisation that avoids exploring redundant paths. For
 example, if you previously tried the ladder `cat->cot->cog` and are now processing `cat->cot->con`,
 you would find that the word `cog` is one letter away from con, which looks like a potential
-candidate to extend this ladder. However, cog has already been reached in an earlier (and thus
+candidate to extend this ladder. However, `cog` has already been reached in an earlier (and thus
 shorter) ladder, so there is no point in reconsidering it in a longer ladder. The simplest way to
 ensure this is to keep track of the words that have been used in any ladder, and ignore them when
 they resurface. This is also necessary to avoid getting trapped in circular, non-terminal ladders
@@ -132,34 +133,36 @@ from the standard library; and to read up on the range-adaptors we’ve listed i
 shouldn’t worry about their implementation details: focus on the interfaces, and how you use them in
 practice.
 * **Task 2** --- *Test design.* We’ve provided you with a very simple test case to show you how to
-use the test library. You should add more TEST_CASEs underneath, so you have a suite of checks to
+use the test library. You should add more `TEST_CASE`s underneath, so you have a suite of checks to
 make sure you catch any logic errors in your generator. We adopt Google’s Beyoncé rule in this
 class: “if you liked it, you should have put a test on it”. Test words that are short (one or two
 letters) and test words that are longer.
 * **Task 3** --- *Design your algorithm.* Be sure you understand the breadth-first search algorithm
 on paper, and what types you will need to use.
-* **Task 4** --- *Lexicon handling.* Set up an absl::flat_hash_set object with the large lexicon,
-read from our data file (there’s a utility function called word_ladder::read_lexicon that will read
-it in from file for you).
+* **Task 4** --- *Lexicon handling.* Set up an `absl::flat_hash_set` object with the large lexicon,
+read from our data file (there’s a utility function called `word_ladder::read_lexicon` that will
+read it in from file for you).
 
 ### Assumptions
 
-* You can assume that the start word and end word have the same length (i.e. number of characters)
-* You can assume that both the start and the end word are in the lexicon
+* You can assume that the start word and end word have the same length (i.e. number of characters).
+* You can assume that both the start and the end word are in the lexicon.
 
 ### Implementation hints
 
+<<<<<<< README.md
 Again, it’s all about leveraging the libraries at your disposal --- you’ll find your job is just to
 coordinate the activities of your objects to do the search.
 
-* [std::vector] maintains a contiguous sequence of elements, and has random-access. Benchmarks have
-shown that its contiguous storage makes it the fastest and smallest container in many situations
-(even when computer science theory tells us that a linked-list would be better!).
-* [std::queue] offers a FIFO interface over a container, which is probably what you’ll want to use
-for tracking your partial ladders. Ladders are enqueued (and thus dequeued) in order of length, so
-as to find the shortest option first.
-* [absl::flat_hash_set] (note 1) is the hash-set that we use for the input lexicon, and is
-recommended for any internal lexicons you might use.
+* [`std::vector`][vector] maintains a contiguous sequence of elements, and has random-access.
+  Benchmarks have shown that its contiguous storage makes it the fastest and smallest container
+  in many situations (even when computer science theory tells us that a linked-list would be
+  better!).
+* [`std::queue`][queue] offers a FIFO interface over a container, which is probably what you’ll
+  want to use for tracking your partial ladders. Ladders are enqueued (and thus dequeued) in
+  order of length, so as to find the shortest option first.
+* [`absl::flat_hash_set`][fhs] (note 1) is the hash-set that we use for the input lexicon, and is
+  recommended for any internal lexicons you might use.
 * [Algorithms] and ranges are powerful tools for describing what you want your program to do.
 * As a minor detail, it doesn’t matter if the start and destination words are contained in the
   lexicon or not. You can eliminate non-words from the get-go or just allow them to fall through and
@@ -312,14 +315,15 @@ If the same assignment was submitted 30 hours late it would be awarded
 ## Appendix
 
 * (note 1) We link you to the C++ Reference page for `std::unordered_set` because
-  `absl::flat_hash_set` is interface-compatible; the Abseil documentation links to C++ Reference’s
-  `std::unordered_set` docs anyway, and mostly explains the advantages of `absl::flat_hash_set`.
+  `absl::flat_hash_set` is almost interface-compatible; the Abseil documentation links to C++
+  Reference’s `std::unordered_set` docs anyway, and mostly explains the advantages of
+  `absl::flat_hash_set`.
 * (note 2) You’ll need to consult the lexicon to see if the transformation is a valid word in either
   case.
 
-[absl::flat_hash_set]: https://en.cppreference.com/w/cpp/container/unordered_set
+[fhs]: https://en.cppreference.com/w/cpp/container/unordered_set
 [Algorithms]: https://en.cppreference.com/w/cpp/algorithm
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
 [ssp]: https://en.wikipedia.org/wiki/Shortest_path_problem
-[std::queue]: https://en.cppreference.com/w/cpp/container/queue
-[std::vector]: https://en.cppreference.com/w/cpp/container/vector
+[queue]: https://en.cppreference.com/w/cpp/container/queue
+[vector]: https://en.cppreference.com/w/cpp/container/vector
