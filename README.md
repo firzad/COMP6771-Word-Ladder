@@ -248,7 +248,7 @@ dozen if statements).
     <td align=right>5%<td>
     <b>clang-format</b><br />
     In your project folder, run the following commands on all C++ files you submit:<br />
-    <code>$ git clang-format-11 -style=file -i /path/to/file.cpp</code>
+    <code>$ clang-format-11 -style=file -i /path/to/file.cpp</code>
     If the program outputs nothing (i.e. is linted correctly), you will receive full marks for
     this section (5%)
   </tr>
