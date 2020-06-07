@@ -1,9 +1,5 @@
 # Assignment 1 - Word Ladder
 
-**This assignment is in draft mode. That means that there is likely to be some rapid fixes for typos
-and clarifications over the coming days. We will keep a log at the top of this file of changes we
-make.**
-
 **Please `git clone` frequently to get the latest changes.**
 
 ## Change Log
@@ -180,9 +176,44 @@ $ git clone gitlab@gitlab.cse.unsw.edu.au:z5555555/20T2-cs6771-ass1
 
 Navigate inside the directory. You can then open vscode with `code .` (not the dot).
 
+Refer to `include/comp6771/word_ladder.hpp` for help starting your `source/word_ladder.cpp` file.
+
 ### Running the tests
 
-As per tutorial 1, you can follow the instructions there to build and run tests.
+Similar to the first tutorial, you simply to have to run `Ctrl+Shift+P` and then type `Run Test` and hit enter. VSCode will compile and run all of your tests and produce an output.
+
+### Adding more tests
+
+Part of your assignment mark will come from the quality and extensiveness of tests that you write.
+
+You can add more test files to the `test/word_ladder/` directory. Simply copy `test/word_ladder/word_ladder_test1.cpp` into another file in that directory.
+
+Note, everytime that you add a new file to the `test/word_ladder/` directory you will need to add another few lines to `test/CMakeLists.txt`. You can once again, simply copy the test reference for `word_ladder_test1.cpp` and rename the appropriate parts. Every time you update `CMakeLists.txt` in any repository, in VSCode you should press `Ctrl+Shift+P` and run `Reload Window` for the changes to take effect/
+
+### Measuring your performance
+
+While you aren't assessed on the performance of your code, there is a **15 second time limit** per test that we will enforce when marking your assignment. For the average student, this means that some of the hardest test cases may not run fast enough with your algorithm and you may fail the latter tests due to timeout.
+
+We have provided the hardest test case we will test against in `test/word_ladder/word_ladder_test_benchmark.cpp`. If you can successfully pass this test within 15 seconds **ON THE CSE MACHINE** then we are providing you a guarantee that you will not fail those tests from a timeout. If you exceed 15 seconds for that test, you may still get the marks, but it's just something we can't guarantee.
+
+Please note: This benchmark test is VERY difficult. If your code takes an hour to run this test that's not something that should make you panic. It's quite easy to fall in the time limit for most of the tests. Don't stress and just make sure earlier tests fall in the 15 second time limit on CSE machines.
+
+To measure your performance:
+
+1. In VSCode, down the very bottom of the window, change your Cmake from `[Debug]` to `[Release]`. This will remove debug symbols and other things, which will mean your code runs faster, but is near impossible to debug for mere mortals. This is usually what is done when you're finished developing and ready for release. We will discuss this more in depth later.
+
+![Debug to release picture](debug.png)
+
+2. In VSCode, press `Ctrl+Shift+P` and select `Build Taret`. Once the next textbox comes up, type `benchmark` and select that test to build
+
+3. In your project directory (the one that has the README.md file in it) run `bash benchmark`. It will output something like this below. The time you should measure yourself against is the "user" time. If this is under 15 seconds then you're all good.
+```txt
+real    1m45.089s
+user    1m44.497s
+sys     0m0.560s
+```
+
+4. In VSCode, down the very bottom of the window, change your Cmake from `[Release]` to `[Debug]`. Now that you're done doing a sanity check benchmark, leave debug symbols on so that you can more effectively debug your code.
 
 ## Marking Criteria
 
@@ -199,9 +230,7 @@ dozen if statements).
       <b>Correctness</b><br />
       The correctness of your program will be determined automatically by tests that we will run against
       your program. You will not know the full sample of tests used prior to marking. Your program must
-      also find the word ladder(s) for a given input in the time limit specified above. Time limits for
-      performance will be clarified at 10pm on Sunday 7th of June (information will be pushed to this
-      repo).
+      also find the word ladder(s) for a given input in the time limit specified above.
     </td>
   </tr>
   <tr>
@@ -247,10 +276,11 @@ dozen if statements).
   <tr>
     <td align=right>5%<td>
     <b>clang-format</b><br />
-    In your project folder, run the following commands on all C++ files you submit:<br />
+    In your project folder, run the following commands on all cpp/h files in the `source` and `test` directory.<br />
     <code>$ clang-format-11 -style=file -i /path/to/file.cpp</code>
-    If the program outputs nothing (i.e. is linted correctly), you will receive full marks for
-    this section (5%)
+    If, for each of these files, the program outputs nothing (i.e. is linted correctly), you will receive full marks for
+    this section (5%).
+    A video explaining how to use clang-format can be found [HERE](https://unsw.zoom.us/rec/share/4_1tE-mo2UpJRo2V0U_UVp4BRoDAeaa8hicbrvVfxRs2wxZeMb3Au5H-75jpZZWj)
   </tr>
 </table>
 
