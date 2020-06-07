@@ -24,12 +24,9 @@
 #include "range/v3/algorithm/is_sorted.hpp"
 #include "range/v3/range/primitives.hpp"
 
-TEST_CASE("at -> it") {
-	auto const english_lexicon = word_ladder::read_lexicon("./english.txt");
-	auto const ladders = word_ladder::generate("at", "it", english_lexicon);
+TEST_CASE("atlases -> cabaret") {
+	auto const english_lexicon = ::word_ladder::read_lexicon("./english.txt");
+	auto const ladders = ::word_ladder::generate("atlases", "cabaret", english_lexicon);
 
-	CHECK(ranges::size(ladders) == 1);
-	CHECK(ranges::is_sorted(ladders));
-
-	CHECK(ranges::any_of(ladders, testing::contain({"at", "it"})));
+	CHECK(ranges::size(ladders) != 0);
 }
