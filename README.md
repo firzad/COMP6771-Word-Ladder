@@ -180,9 +180,20 @@ $ git clone gitlab@gitlab.cse.unsw.edu.au:z5555555/20T2-cs6771-ass1
 
 Navigate inside the directory. You can then open vscode with `code .` (not the dot).
 
+
 ### Running the tests
 
-As per tutorial 1, you can follow the instructions there to build and run tests.
+Similar to the first tutorial, you simply to have to run `Ctrl+Shift+P` and then type `Run Test` and hit enter. VSCode will compile and run all of your tests and produce an output.
+
+If you run this on the repo we've provided, you will run into compile errors because you have not completed `source/word_ladder.cpp`. We would recommend the first step is to stub that file with a valid prototype so that you can at least compile and fail the first test.
+
+**If the generate function written in `source/word_ladder.cpp` successfully compiles with an UNMODIFIED `test/word_ladder/word_ladder_test1.cpp` then your function declaration is correct and we can run the automarking.**
+
+**Failure to provide a valid prototype in `source/word_ladder.cpp` that compiles with an UNMODIFIED `test/word_ladder/word_ladder_test1.cpp` means that you MAY get 0 for the performance part of the marking. This is because we will look for that particular prototype when automarking.**.
+
+### Measuring your performance
+
+TODO
 
 ## Marking Criteria
 
