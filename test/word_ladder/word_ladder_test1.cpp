@@ -25,11 +25,11 @@
 #include "range/v3/range/primitives.hpp"
 
 TEST_CASE("at -> it") {
-	auto const english_lexicon = ::word_ladder::read_lexicon("./english.txt");
-	auto const ladders = ::word_ladder::generate("at", "it", english_lexicon);
+	auto const english_lexicon = word_ladder::read_lexicon("./english.txt");
+	auto const ladders = word_ladder::generate("at", "it", english_lexicon);
 
 	CHECK(ranges::size(ladders) == 1);
 	CHECK(ranges::is_sorted(ladders));
 
-	CHECK(ranges::any_of(ladders, ::testing::contain({"at", "it"})));
+	CHECK(ranges::any_of(ladders, testing::contain({"at", "it"})));
 }
