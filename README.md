@@ -1,9 +1,5 @@
 # Assignment 1 - Word Ladder
 
-**This assignment is in draft mode. That means that there is likely to be some rapid fixes for typos
-and clarifications over the coming days. We will keep a log at the top of this file of changes we
-make.**
-
 **Please `git clone` frequently to get the latest changes.**
 
 ## Change Log
@@ -180,16 +176,11 @@ $ git clone gitlab@gitlab.cse.unsw.edu.au:z5555555/20T2-cs6771-ass1
 
 Navigate inside the directory. You can then open vscode with `code .` (not the dot).
 
+Refer to `include/comp6771/word_ladder.hpp` for help starting your `source/word_ladder.cpp` file.
 
 ### Running the tests
 
 Similar to the first tutorial, you simply to have to run `Ctrl+Shift+P` and then type `Run Test` and hit enter. VSCode will compile and run all of your tests and produce an output.
-
-If you run this on the repo we've provided, you will run into compile errors because you have not completed `source/word_ladder.cpp`. We would recommend the first step is to stub that file with a valid prototype so that you can at least compile and fail the first test.
-
-**If the generate function written in `source/word_ladder.cpp` successfully compiles with an UNMODIFIED `test/word_ladder/word_ladder_test1.cpp` then your function declaration is correct and we can run the automarking.**
-
-**Failure to provide a valid prototype in `source/word_ladder.cpp` that compiles with an UNMODIFIED `test/word_ladder/word_ladder_test1.cpp` means that you MAY get 0 for the performance part of the marking. This is because we will look for that particular prototype when automarking.**.
 
 ### Adding more tests
 
@@ -239,9 +230,7 @@ dozen if statements).
       <b>Correctness</b><br />
       The correctness of your program will be determined automatically by tests that we will run against
       your program. You will not know the full sample of tests used prior to marking. Your program must
-      also find the word ladder(s) for a given input in the time limit specified above. Time limits for
-      performance will be clarified at 10pm on Sunday 7th of June (information will be pushed to this
-      repo).
+      also find the word ladder(s) for a given input in the time limit specified above.
     </td>
   </tr>
   <tr>
@@ -287,10 +276,11 @@ dozen if statements).
   <tr>
     <td align=right>5%<td>
     <b>clang-format</b><br />
-    In your project folder, run the following commands on all C++ files you submit:<br />
+    In your project folder, run the following commands on all cpp/h files in the `source` and `test` directory.<br />
     <code>$ clang-format-11 -style=file -i /path/to/file.cpp</code>
-    If the program outputs nothing (i.e. is linted correctly), you will receive full marks for
-    this section (5%)
+    If, for each of these files, the program outputs nothing (i.e. is linted correctly), you will receive full marks for
+    this section (5%).
+    A video explaining how to use clang-format can be found [HERE](https://unsw.zoom.us/rec/share/4_1tE-mo2UpJRo2V0U_UVp4BRoDAeaa8hicbrvVfxRs2wxZeMb3Au5H-75jpZZWj)
   </tr>
 </table>
 
