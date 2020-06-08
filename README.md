@@ -1,6 +1,6 @@
 # Assignment 1 - Word Ladder
 
-**Please `git clone` frequently to get the latest changes.**
+**Please `git pull` frequently to get the latest changes.**
 
 ## Change Log
 
