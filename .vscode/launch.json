@@ -10,7 +10,7 @@
          "name": "Launch LLDB",
          "program": "${command:cmake.launchTargetPath}",
          "args": [],
-         "cwd": "${workspaceFolder}",
+         "cwd": "${workspaceFolder}/build/test/word_ladder",
          "env": {
             "ASAN_OPTIONS": "detect_leaks=0"
          }
@@ -21,7 +21,7 @@
          "name": "Launch GDB",
          "target": "${command:cmake.launchTargetPath}",
          "arguments": "",
-         "cwd": "${workspaceFolder}",
+         "cwd": "${workspaceFolder}/build/test/word_ladder",
          "env": {
             "ASAN_OPTIONS": "detect_leaks=0"
          }
