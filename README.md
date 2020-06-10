@@ -6,6 +6,7 @@
 
 * `vcpkg` triplets renamed for home use + PowerShell script updated for PowerShell compatibility.
 * "awake" -> "sleep" example updated with missing word
+* (11th June) "awake" -> "sleep" example updated properly
 
 ## Overview
 
@@ -64,7 +65,10 @@ shortest such sequence. Here are some more examples.
 ::word_ladder::generate("work", "play", english_words);
 // returns {{"work", "fork", "form", "foam", "flam", "flay", "play"}}
 ::word_ladder::generate("awake", "sleep", english_words);
-// returns {{"awake", "aware", "sware", "swire", "shire", "shirr", "shier", "sheer", "sheep", "sleep"}}
+// returns {
+//   {"awake","aware","sware","share","sharn","shawn","shewn","sheen","sheep","sleep"}
+//   {"awake","aware","sware","share","shire","shirr","shier","sheer","sheep","sleep"}
+// }
 ::word_ladder::generate("airplane", "tricycle", engish_words);
 // returns {}
 ```
