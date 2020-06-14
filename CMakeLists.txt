@@ -31,6 +31,7 @@ find_package(benchmark CONFIG REQUIRED)
 # find_package(constexpr-contracts REQUIRED)
 find_package(Catch2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
+find_package(gsl-lite CONFIG REQUIRED)
 find_package(range-v3 CONFIG REQUIRED)
 
 include_directories(include)
