@@ -9,6 +9,7 @@
 * (11th June) "awake" -> "sleep" example updated properly
 * (13th June) Assumption that start word != end word made clear
 * (13th June) Clarity that you don't _have_ to put all the tests in one file
+* (15th June) Adds gsl-lite to root CMakeLists.txt
 
 ## Overview
 
