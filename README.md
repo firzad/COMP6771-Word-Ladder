@@ -7,6 +7,9 @@
 * `vcpkg` triplets renamed for home use + PowerShell script updated for PowerShell compatibility.
 * "awake" -> "sleep" example updated with missing word
 * (11th June) "awake" -> "sleep" example updated properly
+* (13th June) Assumption that start word != end word made clear
+* (13th June) Clarity that you don't _have_ to put all the tests in one file
+* (15th June) Adds gsl-lite to root CMakeLists.txt
 
 ## Overview
 
@@ -149,6 +152,7 @@ read it in from file for you.
 
 * You can assume that the start word and end word have the same length (i.e. number of characters).
 * You can assume that both the start and the end word are in the lexicon.
+* You can assume the start word and the end word will not be the same word
 
 ### Implementation hints
 
@@ -267,11 +271,8 @@ dozen if statements).
     <td align=right>25%</td>
     <td>
       <b>Your tests</b><br />
-      You are required to write your own tests to ensure your program works. You will write tests in
-      <code>word_ladder_test.cpp</code>. At the top of this file you will also include a block
-      comment to explain the rational and approach you took to writing tests. Please read the
-      <a href="https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md">Catch2 tutorial</a>
-      or review lecture/tutorial content to see how to write tests. Tests will be marked on several
+      You are required to write your own tests to ensure your program works.
+      You will write tests in the <code>test/</code> directory. At the top of each file you will also include a block comment to explain the rational and approach you took to writing tests. Please read the <a href="https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md">Catch2 tutorial</a> or review lecture/tutorial content to see how to write tests. Tests will be marked on several
       factors. These include, but are not limited to:
       <ul>
         <li>Correctness — an incorrect test is worse than useless.</li>
