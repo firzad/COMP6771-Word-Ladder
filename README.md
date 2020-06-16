@@ -363,14 +363,14 @@ Please ensure that you can build and run your tests successfully on the CSE mach
 
 ## Late Submission Policy
 
-If your assignment is submitted after this date, each hour it is late reduces the maximum mark it
-can achieve by 2%.
+If your assignment is submitted after this date, each hour it is late reduces the maximum mark it can achieve by 0.5%.
 
-For example if an assignment worth 76% was submitted 5 hours late, the late submission would have no
-effect (as maximum mark would be 90%).
+For example if an assignment you submitted with a raw awarded mark of 85% was submitted 5 hours late, the late submission would have no effect (as maximum mark would be 97.5%).
 
-If the same assignment was submitted 30 hours late it would be awarded
-40%, the maximum mark it can achieve at that time.
+If the same assignment was submitted 40 hours late it would be awarded
+80%, the maximum mark it can achieve at that time.
+
+This late penalty has been amended from the original specification, and you should not assume it will be the same for future assignments.
 
 ## Appendix
 
