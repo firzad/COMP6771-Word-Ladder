@@ -22,7 +22,7 @@
 	"cmake.generator": "Ninja",
 	"cmake.saveBeforeBuild": true,
 	"editor.fontFamily": "Consolas, 'Courier New', monospace",
-	"editor.fontSize": 20,
+	"editor.fontSize": 15,
 	"editor.minimap.enabled": false,
 	"editor.rulers": [
 		100
